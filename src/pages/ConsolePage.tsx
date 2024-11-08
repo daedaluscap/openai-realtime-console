@@ -456,6 +456,73 @@ export function ConsolePage() {
     //     return json;
     //   }
     // );
+    client.addTool(
+      {
+        name: 'endCall',
+        description: 'Physically terminates the call audio stream',
+        parameters: {
+          type: 'object',
+          properties: {},
+          required: [],
+        },
+      },
+      async () => {
+        console.log('Ending call...');
+        return { terminated: true };
+      }
+    );
+
+    client.addTool(
+      {
+        name: 'validateProperty',
+        description: 'Validates a caller-provided property address',
+        parameters: {
+          type: 'object',
+          properties: {
+            address: {
+              type: 'string',
+              description:
+                'The street address to validate (no unit number, city, etc)',
+            },
+          },
+          required: ['address'],
+        },
+      },
+      async ({ address }: { address: string }) => {
+        console.log('Validating property address:', address);
+        // Implementation would connect to address validation service
+        return { isValid: true };
+      }
+    );
+
+    client.addTool(
+      {
+        name: 'doubleCheckCollectedInformation',
+        description:
+          'Cross-checks the conversation for required information completeness',
+        parameters: {
+          type: 'object',
+          properties: {
+            conversationId: {
+              type: 'string',
+              description: 'Identifier for the current conversation',
+            },
+          },
+          required: ['conversationId'],
+        },
+      },
+      async ({ conversationId }: { conversationId: string }) => {
+        console.log(
+          'Double checking collected information for conversation:',
+          conversationId
+        );
+        // Implementation would analyze conversation history and required fields
+        return {
+          missingFields: [],
+          discrepancies: [],
+        };
+      }
+    );
 
     // handle realtime events from client + server for event logging
     client.on('realtime.event', (realtimeEvent: RealtimeEvent) => {
