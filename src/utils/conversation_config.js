@@ -400,17 +400,8 @@ Here is additional context relevant to your response:
   ]
 }
 
-You are the SUPPORT_AGENT. Please respond with:
-1) A confidence number between 0 and 100, where 0 is no confidence and 100 is complete confidence in the response being correct
-2) A concise explanation (<100 characters) of why you chose the response you did
-3) Your spoken response
+You are the SUPPORT_AGENT. Please respond with just your spoken response in text.
 
-Follow this JSON format:
-{
-  "explanation": "<your explanation>",
-  "confidence": 85,
-  "utterance": "<your spoken response>"
-}
 
 # TOOLS
 
@@ -436,10 +427,7 @@ Usage guidelines:
 * There is a penalty when you end the call vs. the caller, so only use this as a last resort.
 
 Example:
-{
-  "speaker": "YOU",
-  "utterance": "I'm sorry but I've tried my best to be of assistance and it seems clear I can do nothing more to help. Please feel free to contact us again if there's something else we can help with. Have a nice day!<|endcall|>"
-}
+"I'm sorry but I've tried my best to be of assistance and it seems clear I can do nothing more to help. Please feel free to contact us again if there's something else we can help with. Have a nice day!" // call endCall()
 
 ## validateProperty
 
@@ -451,10 +439,7 @@ Usage guidelines:
 * Don't validate the same address more than once.
 
 Example:
-{
-  "speaker": "YOU",
-  "utterance": "Thank you for confirming the property address as 123 Main St. Let me check whether it's valid.<|validateProperty(123 Main St.)|>"
-}
+"Thank you for confirming the property address as 123 Main St. Let me check whether it's valid." // call validateProperty(123 Main St.)
 
 ## doubleCheckCollectedInformation
 
@@ -468,12 +453,5 @@ Usage guidelines:
 * If there are multiple pieces of information missing, only ask for one piece of information at a time to avoid overwhelming the caller.
 
 Example:
-{
-  "speaker": "YOU",
-  "utterance": "Okay, I think I might have all the info I need, but let me double-check.<|doubleCheckCollectedInformation|>"
-}
-
-
-
-I need to parse your response with code, so please respond in JSON format with only the JSON itself.
+"Okay, I think I might have all the info I need, but let me double-check." // call doubleCheckCollectedInformation()
 `;
